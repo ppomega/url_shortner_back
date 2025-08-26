@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const fetchUrl = require("./business_logic/urlfetch");
-const insertUrl = require("./business_logic/urlinsert");
-const fetchUrlId = require("./business_logic/urlfetch_id");
+const fetchUrl = require("./src/business_logic/urlfetch");
+const insertUrl = require("./src/business_logic/urlinsert");
+const fetchUrlId = require("./src/business_logic/urlfetch_id");
 require("dotenv").config();
 const app = express();
 app.use(cors());
