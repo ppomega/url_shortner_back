@@ -11,22 +11,24 @@ app.use(express.json());
 app.listen(8000, () => {
   console.log("Server started on port 8000");
 });
-app.post("/url", async (req, res) => {
+app.post("/api/shorten", async (req, res) => {
+  console.log(req.body);
   const url = req.body.url;
+  console.log(url);
   const data = await insertUrl(url);
   res.send(data);
 });
+app.get("/:shortcode", async (req, res) => {
+  console.log(req.params);
+  const shortcode = req.params.shortcode;
+  const data = await fetchUrlId(shortcode);
+  console.log(data);
 
-app.get("/urls", async (req, res) => {
+  res.redirect(301, data[0].url);
+});
+app.get("/api/urls", async (req, res) => {
   const data = await fetchUrl();
   console.log(data);
 
-  res.send(data);
-});
-app.get("/url", async (req, res) => {
-  const url = req.headers.url;
-
-  const data = await fetchUrlId(url);
-  console.log(data);
   res.send(data);
 });
